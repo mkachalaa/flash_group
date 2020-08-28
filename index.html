@@ -46,23 +46,20 @@
 
 
 
-
-
-
-'use strict';
+ 'use strict';
     var multiItemSlider = (function () {
       return function (selector, config) {
         var
-          _mainElement = document.querySelector(selector), //
-          _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), //
-          _sliderItems = _mainElement.querySelectorAll('.slider__item'), //
-          _sliderControls = _mainElement.querySelectorAll('.slider__control'), //
-          _sliderControlLeft = _mainElement.querySelector('.slider__control_left'), //
-          _sliderControlRight = _mainElement.querySelector('.slider__control_right'), //
-          _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width), //
-          _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width), //
+          _mainElement = document.querySelector(selector),
+          _sliderWrapper = _mainElement.querySelector('.slider__wrapper'),
+          _sliderItems = _mainElement.querySelectorAll('.slider__item'),
+          _sliderControls = _mainElement.querySelectorAll('.slider__control'),
+          _sliderControlLeft = _mainElement.querySelector('.slider__control_left'),
+          _sliderControlRight = _mainElement.querySelector('.slider__control_right'),
+          _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width),
+          _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width),
           _positionLeftItem = 0,
-          _transform = 0, .slider_wrapper
+          _transform = 0,
           _step = _itemWidth / _wrapperWidth * 100,
           _items = [];
         _sliderItems.forEach(function (item, index) {
@@ -120,6 +117,7 @@
           });
         }
 
+
         _setUpListeners();
 
         return {
@@ -135,8 +133,6 @@
     }());
 
     var slider = multiItemSlider('.slider')
-
-
 
 
 
