@@ -1,149 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <script src="js/app.js"></script>
+  <meta charset="UTF-8">
+  <title>DC HERO</title>
+  <link rel="stylesheet" href="./style.css">
+
 </head>
-
 <body>
+
+<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.js"></script>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container-fulid">
     <div class="logotype"><img src="images/logo.png"></div>
+   <section class="customer-logos slider">
+             <div class="slide"><img src="images/slider_img/1.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/2.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/3.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/4.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/5.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/6.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/7.jpg" width="200" height="300"></div>
 
-   <div class="slider">
-    <div class="slider__wrapper">
-      <div class="slider__item">
-        <div style="new"><img src="images/slider_img/1.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/2.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/3.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/4.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/5.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/6.jpg" width="200" height="300" ></div>
-      </div>
-        <div class="slider__item">
-        <div style="new"><img src="images/slider_img/7.jpg" width="200" height="300" ></div>
-      </div>
+             <div class="slide"><img src="images/slider_img/1.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/2.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/3.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/4.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/5.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/6.jpg" width="200" height="300"></div>
+             <div class="slide"><img src="images/slider_img/7.jpg" width="200" height="300"></div>
 
-    </div>
-    <a class="slider__control slider__control_left" href="#" role="button"></a>
-    <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
-  </div>
+   </section>
+</div>
 
-
-
-
-<script>
-
-
-
- 'use strict';
-    var multiItemSlider = (function () {
-      return function (selector, config) {
-        var
-          _mainElement = document.querySelector(selector),
-          _sliderWrapper = _mainElement.querySelector('.slider__wrapper'),
-          _sliderItems = _mainElement.querySelectorAll('.slider__item'),
-          _sliderControls = _mainElement.querySelectorAll('.slider__control'),
-          _sliderControlLeft = _mainElement.querySelector('.slider__control_left'),
-          _sliderControlRight = _mainElement.querySelector('.slider__control_right'),
-          _wrapperWidth = parseFloat(getComputedStyle(_sliderWrapper).width),
-          _itemWidth = parseFloat(getComputedStyle(_sliderItems[0]).width),
-          _positionLeftItem = 0,
-          _transform = 0,
-          _step = _itemWidth / _wrapperWidth * 100,
-          _items = [];
-        _sliderItems.forEach(function (item, index) {
-          _items.push({ item: item, position: index, transform: 0 });
-        });
-
-        var position = {
-          getMin: 0,
-          getMax: _items.length - 1,
-        }
-
-        var _transformItem = function (direction) {
-          if (direction === 'right') {
-            if ((_positionLeftItem + _wrapperWidth / _itemWidth - 1) >= position.getMax) {
-              return;
-            }
-            if (!_sliderControlLeft.classList.contains('slider__control_show')) {
-              _sliderControlLeft.classList.add('slider__control_show');
-            }
-            if (_sliderControlRight.classList.contains('slider__control_show') && (_positionLeftItem + _wrapperWidth / _itemWidth) >= position.getMax) {
-              _sliderControlRight.classList.remove('slider__control_show');
-            }
-            _positionLeftItem++;
-            _transform -= _step;
-          }
-          if (direction === 'left') {
-            if (_positionLeftItem <= position.getMin) {
-              return;
-            }
-            if (!_sliderControlRight.classList.contains('slider__control_show')) {
-              _sliderControlRight.classList.add('slider__control_show');
-            }
-            if (_sliderControlLeft.classList.contains('slider__control_show') && _positionLeftItem - 1 <= position.getMin) {
-              _sliderControlLeft.classList.remove('slider__control_show');
-            }
-            _positionLeftItem--;
-            _transform += _step;
-          }
-          _sliderWrapper.style.transform = 'translateX(' + _transform + '%)';
-        }
-
-
-        var _controlClick = function (e) {
-          if (e.target.classList.contains('slider__control')) {
-            e.preventDefault();
-            var direction = e.target.classList.contains('slider__control_right') ? 'right' : 'left';
-            _transformItem(direction);
-          }
-        };
-
-        var _setUpListeners = function () {
-
-          _sliderControls.forEach(function (item) {
-            item.addEventListener('click', _controlClick);
-          });
-        }
-
-
-        _setUpListeners();
-
-        return {
-          right: function () {
-            _transformItem('right');
-          },
-          left: function () {
-            _transformItem('left');
-          }
-        }
-
-      }
-    }());
-
-    var slider = multiItemSlider('.slider')
-
-
-
-
-    </script>
-
-
-
-
-
+  <script  src="./script.js"></script>
 
 </body>
-
 </html>
